@@ -73,18 +73,41 @@ var player = document.querySelector("audio");
  player.playbackRate = value;
 }
 
-// //課題4たそ
-// function onPlaybackRateChanged(event){
-//    var rate = playbackRateControl.value;
-//    setPlaybackRate(rate);
-// }
-// var playbackRateControl = document.querySelector("#reset-speed-button > input");
-//  playbackRateControl.addEventListener("change",onPlaybackRateChanged);
-//
-//  function showPlaybackRateControl(event){
-//
-//  }
+//課題4たそ
+function onPlaybackRateChanged(event){
+var rate = playbackRateControl.value;
+setPlaybackRate(rate);
+}
+var playbackRateControl = 
+document.querySelector("#playback-rate-control > input");
+playbackRateControl.addEventListener("change", onPlaybackRateChanged);
 
+function showPlaybackRate(value){
+var label = 
+document.querySelector("#playback-rate-control > span");
+label.textContent = "x " + value;
+}
+function setPlaybackRate(value){
+var player = document.querySelector("audio");
+player.playbackRate = value;
+showPlaybackRate(value);
+}
+
+
+function resetPlaybackRate(){
+  showPlaybackRate(1.0);
+  setPlaybackRate(1.0);
+  rateInput.value = 1.0;
+}
+
+
+var rateInput = document.querySelector("#playback-rate-control > input");
+rateInput.addEventListener("change", function(event) {
+  setPlaybackRate(rateInput.value);
+});
+
+var resetPlaybackRateButton = document.querySelector("#reset-speed-button");
+resetPlaybackRateButton.addEventListener("click", resetPlaybackRate);
  //canvasのお勉強だよ
  var canvas = document.querySelector("canvas");
  var ctx = canvas.getContext("2d");
